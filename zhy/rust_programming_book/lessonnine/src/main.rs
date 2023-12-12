@@ -2,7 +2,7 @@ use std::io;
 use std::io::Read;
 use std::fs::File;
 
-fn main() {、
+fn main() {
     //Rust 有 panic! 宏。当执行这个宏时，程序会打印
     //出一个错误信息，展开并清理栈数据，然后接着退出
     println!("Hello, world!");
@@ -19,14 +19,27 @@ fn main() {、
     //传播（propagating）错误
     //为比起你代码所拥有的
     //上下文，调用者可能拥有更多信息或逻辑来决定应该如何处理错误。
+    
+        
+}
+fn read_username_from_file() -> Result<String, io::Error> {
+    let f = File::open("hello.txt");
     let mut f = match f {
         Ok(file) => file,
         Err(e) => return Err(e),
-        };
-        let mut s = String::new();
-        match f.read_to_string(&mut s) {
+    };
+    let mut s = String::new();
+    match f.read_to_string(&mut s) {
         Ok(_) => Ok(s),
         Err(e) => Err(e),
-        }
-        
+    }
 }
+
+fn read_username_from_file2() -> Result<String, io::Error> {
+    let mut f = File::open("hello.txt")?;
+    let mut s = String::new();
+    f.read_to_string(&mut s)?;
+    //使用？，如果ok则表达式返回ok的值，否则return err
+    Ok(s)
+}
+    
