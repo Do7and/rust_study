@@ -30,47 +30,6 @@ fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
 //Rust 通过在编译时进行泛型代码的 单态化（monomorphization）来保证效率。单态化是一个将泛型代码转变为实际放入
 //的具体类型的特定代码的过程。
 
-//trait：定义共享的行为
-//lib.rs中
-pub trait Summarizable {
-    fn summary(&self) -> String;
-}
-
-pub struct NewsArticle {
-    pub headline: String,
-    pub location: String,
-    pub author: String,
-    pub content: String,
-}
-impl Summarizable for NewsArticle {
-    fn summary(&self) -> String {
-        format!("{}, by {} ({})", self.headline, self.author, self.location)
-    }
-}
-pub struct Tweet {
-    pub username: String,
-    pub content: String,
-    pub reply: bool,
-    pub retweet: bool,
-}
-impl Summarizable for Tweet {
-    fn summary(&self) -> String {
-        format!("{}: {}", self.username, self.content)
-    }
-}
-    
-//trait bounds
-pub fn notify<T: Summarizable>(item: T) {
-    println!("Breaking news! {}", item.summary());
-    }
-
-
-fn some_function<T: Display + Clone, U: Clone + Debug>(t: T, u: U) -> i32 {
-}
-fn some_function2<T, U>(t: T, u: U) -> i32
-where T: Display + Clone,
-U: Clone + Debug
-{}
 //生命周期
 //编译器的这一部分叫做 借用检查器（borrow checker），它比较作用域来确保所有的借用都是有效的。
 

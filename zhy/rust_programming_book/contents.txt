@@ -1,0 +1,15 @@
+1.Hello Rust!
+2.guessing game
+3.basic concepts
+4.ownership borrowing/reference
+5.struct
+6.enum and match
+7.managing project /directory structure
+8.common collections String/Vec/HashMap
+9.panic
+10.generic data type/trait/lifetime
+11.tests(None)
+12.an IO project, see more in ./../minigrep  (None)
+13.closure
+14.cargo and crates
+15.smart pointers Box/Rc/RefCell
