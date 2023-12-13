@@ -35,3 +35,28 @@ fn main() {
 }
 // 注意其定义并没有增加任何类型注解：如果尝试调用闭包两次，第一
 // 次使用 String 类型作为参数而第二次使用 u32 ，则会得到一个错误
+
+
+//迭代器是 惰性的（lazy），这意味着直到调用方法消费迭代器之前它都不会有效果
+struct Counter{
+    count: u32,
+}
+impl Counter{
+    fn new() -> Counter {
+        Counter{ count:0 }
+    }
+}
+impl Iterator for Counter{
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item>{
+        self.count += 1;
+        if self.count < 6 {
+            Some(self.count)
+        }else{
+            None
+        }
+    }
+}
+
+//实现一个Iterator trait 只需要实现next就行
